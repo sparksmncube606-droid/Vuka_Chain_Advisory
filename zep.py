@@ -1,13 +1,8 @@
 # pip install streamlit web3 streamlit-js-eval
 import streamlit as st
-import json
+from web3 import Web3
 from streamlit_js_eval import streamlit_js_eval
-
-try:
-    from web3 import Web3
-except ImportError:
-    import web3
-    Web3 = web3.Web3
+import config
 
 # ================================
 # CONFIG - ALREADY FILLED IN
