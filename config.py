@@ -1,42 +1,124 @@
-# VukaChain Advisory Configuration
+# ================================
+# APP SETTINGS
+# ================================
 
-## Network Settings
+APP_NAME = "iThuma Logistics Demo"
 
-- **Network Name**: Mainnet
-- **RPC URL**: https://mainnet.vukachain.org
-- **Chain ID**: 1
+APP_TAGLINE = "Blockchain Supply Chain System"
 
-## App Branding
+APP_DESCRIPTION = "Track suppliers, couriers, and procurement on-chain."
 
-- **App Name**: VukaChain Advisory
-- **App Logo**: /assets/logo.png
-- **Theme Color**: #5b8c1a
+LOGO_PATH = "logo.png"
 
-## Status Mappings
+# ================================
+# NETWORK SETTINGS
+# ================================
 
-- **Pending**: Waiting for user action
-- **In Progress**: Action is being executed
-- **Completed**: Action completed successfully
-- **Failed**: Action encountered an error
+RPC_URL = "https://rpc.sepolia.org"
 
-## Smart Contract ABI
+CONTRACT_ADDRESS = "0xYourContractAddress"
 
-```json
-[
+# ================================
+# SMART CONTRACT ABI
+# ================================
+
+CONTRACT_ABI = [
     {
-        "constant": true,
-        "inputs": [ ],
-        "name": "totalSupply",
+        "inputs": [],
+        "name": "owner",
         "outputs": [
             {
-                "name": "",  
-                "type": "uint256"
+                "internalType": "address",
+                "name": "",
+                "type": "address"
             }
         ],
-        "payable": false,
         "stateMutability": "view",
         "type": "function"
     },
-    ...
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_id",
+                "type": "uint256"
+            }
+        ],
+        "name": "getOrder",
+        "outputs": [
+            {
+                "components": [
+                    {
+                        "internalType": "uint256",
+                        "name": "id",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "supplier",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "courier",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "createdBy",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "amount",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "carbonEmissions",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint8",
+                        "name": "status",
+                        "type": "uint8"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "timestamp",
+                        "type": "uint256"
+                    }
+                ],
+                "internalType": "tuple",
+                "name": "",
+                "type": "tuple"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    }
 ]
-```
+
+# ================================
+# STATUS MAPS
+# ================================
+
+ORDER_STATUS = {
+    0: "Created",
+    1: "Approved",
+    2: "Assigned",
+    3: "Dispatched",
+    4: "Delivered"
+}
+
+SUPPLIER_STATUS = {
+    0: "Pending",
+    1: "Verified",
+    2: "Blocked"
+}
+
+COURIER_STATUS = {
+    0: "Available",
+    1: "Busy",
+    2: "Offline"
+}
